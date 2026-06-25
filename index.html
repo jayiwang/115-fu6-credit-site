@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>115富六學分班</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f7fb;
+        --ink: #172033;
+        --muted: #647086;
+        --line: #dfe5ef;
+        --panel: #ffffff;
+        --blue: #1f5fbf;
+        --blue-2: #e8f0ff;
+        --green: #16845f;
+        --green-2: #e7f7f0;
+        --amber: #a46409;
+        --amber-2: #fff3dc;
+        --shadow: 0 18px 48px rgba(27, 39, 63, .12);
+        font-family: "Microsoft JhengHei", "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at top left, rgba(31, 95, 191, .14), transparent 32rem),
+          linear-gradient(180deg, #ffffff 0%, var(--bg) 42%);
+        color: var(--ink);
+      }
+
+      button, input { font: inherit; }
+
+      .shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 28px 0 42px;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        align-items: end;
+        padding: 24px 0 18px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--blue);
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: .08em;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(34px, 5vw, 58px);
+        line-height: 1.03;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 700px;
+        margin: 16px 0 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.75;
+      }
+
+      .quick-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(82px, 1fr));
+        gap: 10px;
+        min-width: 300px;
+      }
+
+      .stat {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, .78);
+        padding: 12px;
+        text-align: center;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 26px;
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .toolbar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        margin: 20px 0 18px;
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 0 14px;
+        min-height: 48px;
+      }
+
+      .search span { color: var(--muted); }
+
+      .search input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        color: var(--ink);
+        background: transparent;
+      }
+
+      .view-tabs {
+        display: inline-grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 6px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 5px;
+      }
+
+      .tab {
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 8px 12px;
+        white-space: nowrap;
+      }
+
+      .tab.active {
+        background: var(--blue);
+        color: #fff;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .subjects {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .subject-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 360px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .subject-head {
+        padding: 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .subject-tag {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 5px 10px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .accounting .subject-tag { background: var(--blue-2); color: var(--blue); }
+      .statistics .subject-tag { background: var(--green-2); color: var(--green); }
+      .economics .subject-tag { background: var(--amber-2); color: var(--amber); }
+
+      .subject-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 28px;
+      }
+
+      .icon {
+        display: grid;
+        width: 46px;
+        height: 46px;
+        place-items: center;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 900;
+      }
+
+      .accounting .icon { background: var(--blue); }
+      .statistics .icon { background: var(--green); }
+      .economics .icon { background: var(--amber); }
+
+      .subject-desc {
+        margin: 12px 0 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .week-list {
+        display: grid;
+        gap: 10px;
+        padding: 16px;
+      }
+
+      .week-button {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 12px;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+        cursor: pointer;
+        padding: 14px;
+        text-align: left;
+        transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+      }
+
+      .week-button:hover,
+      .week-button.active {
+        border-color: rgba(31, 95, 191, .45);
+        box-shadow: 0 10px 22px rgba(31, 95, 191, .12);
+        transform: translateY(-1px);
+      }
+
+      .week-no {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border-radius: 8px;
+        background: #f2f5fa;
+        font-weight: 900;
+      }
+
+      .week-name {
+        display: block;
+        font-weight: 900;
+      }
+
+      .week-meta {
+        display: block;
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .arrow {
+        color: var(--muted);
+        font-size: 20px;
+      }
+
+      .detail {
+        position: sticky;
+        top: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .detail-banner {
+        padding: 18px;
+        background: linear-gradient(135deg, #173a78, #1f5fbf);
+        color: #fff;
+      }
+
+      .detail-banner p {
+        margin: 8px 0 0;
+        color: rgba(255, 255, 255, .82);
+        line-height: 1.55;
+      }
+
+      .detail-body {
+        padding: 18px;
+      }
+
+      .detail h3 {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .detail-section {
+        margin-top: 18px;
+      }
+
+      .detail-section h4 {
+        margin: 0 0 10px;
+        font-size: 15px;
+      }
+
+      .pill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pill {
+        border-radius: 999px;
+        background: #f1f5fb;
+        color: #33425c;
+        padding: 7px 10px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .todo-list {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .todo-list li {
+        display: grid;
+        grid-template-columns: 22px 1fr;
+        gap: 8px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .todo-list li::before {
+        content: "✓";
+        display: grid;
+        width: 22px;
+        height: 22px;
+        place-items: center;
+        border-radius: 999px;
+        background: var(--green-2);
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .cta-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .cta {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+        cursor: pointer;
+        font-weight: 900;
+        padding: 11px 12px;
+        text-decoration: none;
+      }
+
+      .cta.primary {
+        border-color: var(--blue);
+        background: var(--blue);
+        color: #fff;
+      }
+
+      .outline {
+        margin-top: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, .72);
+        padding: 16px;
+      }
+
+      .outline h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+      }
+
+      .tree {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+        line-height: 1.9;
+      }
+
+      .tree strong { color: var(--ink); }
+
+      .hidden { display: none; }
+
+      @media (max-width: 980px) {
+        header,
+        .toolbar,
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .quick-stats {
+          min-width: 0;
+        }
+
+        .subjects {
+          grid-template-columns: 1fr;
+        }
+
+        .subject-card {
+          min-height: auto;
+        }
+
+        .detail {
+          position: static;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .shell {
+          width: min(100% - 22px, 1180px);
+          padding-top: 12px;
+        }
+
+        .view-tabs {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <section>
+          <p class="eyebrow">NTUST EMBA LEARNING HUB</p>
+          <h1>115富六學分班</h1>
+          <p class="lead">把會計科、統計科、經濟學的每週重點整理成一個好找、好複習、也能慢慢長大的課程網站。</p>
+        </section>
+        <aside class="quick-stats" aria-label="課程統計">
+          <div class="stat"><strong>3</strong><span>科目</span></div>
+          <div class="stat"><strong>6</strong><span>週次入口</span></div>
+          <div class="stat"><strong>1</strong><span>主畫面</span></div>
+        </aside>
+      </header>
+
+      <section class="toolbar" aria-label="查找工具">
+        <label class="search">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="搜尋科目、Week、重點，例如：借貸、平均數、供需">
+        </label>
+        <nav class="view-tabs" aria-label="科目篩選">
+          <button class="tab active" type="button" data-filter="all">全部</button>
+          <button class="tab" type="button" data-filter="core">主修重點</button>
+          <button class="tab" type="button" data-filter="review">考前複習</button>
+        </nav>
+      </section>
+
+      <section class="layout">
+        <div>
+          <section id="subjects" class="subjects" aria-label="科目清單"></section>
+          <section class="outline" aria-label="網站架構">
+            <h3>網站架構</h3>
+            <ul class="tree">
+              <li><strong>115富六學分班</strong></li>
+              <li>會計科：Week 1、Week 2</li>
+              <li>統計科：Week 1、Week 2</li>
+              <li>經濟學：Week 1、Week 2</li>
+            </ul>
+          </section>
+        </div>
+
+        <aside id="detail" class="detail" aria-live="polite"></aside>
+      </section>
+    </main>
+
+    <script>
+      const courses = [
+        {
+          id: "accounting",
+          className: "accounting",
+          icon: "會",
+          title: "會計科",
+          tag: "Accounting",
+          desc: "建立借貸、分錄、會計循環與財報閱讀的基礎。",
+          weeks: [
+            {
+              id: "acc-w1",
+              week: "Week 1",
+              title: "會計基本概念",
+              meta: "借方、貸方、資產負債權益",
+              status: "待補教材",
+              tags: ["借貸法則", "會計恆等式", "分錄"],
+              tasks: ["整理上課逐字稿", "補上常見分錄範例", "加入課後小測驗"],
+              type: "core"
+            },
+            {
+              id: "acc-w2",
+              week: "Week 2",
+              title: "會計循環與試算",
+              meta: "交易、分錄、過帳、試算表",
+              status: "待補教材",
+              tags: ["會計循環", "試算表", "調整分錄"],
+              tasks: ["建立流程圖", "補上練習題", "整理易混淆觀念"],
+              type: "review"
+            }
+          ]
+        },
+        {
+          id: "statistics",
+          className: "statistics",
+          icon: "統",
+          title: "統計科",
+          tag: "Statistics",
+          desc: "從資料整理、描述統計到推論統計，做成圖像化複習筆記。",
+          weeks: [
+            {
+              id: "stat-w1",
+              week: "Week 1",
+              title: "統計學導論",
+              meta: "資料、圖表、平均數與標準差",
+              status: "已有初版",
+              tags: ["資料類型", "描述統計", "自由度"],
+              tasks: ["可連接既有 Week 1 圖片重點", "補上例題與計算機操作", "加入公式卡片"],
+              type: "core"
+            },
+            {
+              id: "stat-w2",
+              week: "Week 2",
+              title: "機率與分配",
+              meta: "機率概念、隨機變數、常見分配",
+              status: "待補教材",
+              tags: ["機率", "常態分配", "抽樣"],
+              tasks: ["整理課堂例題", "加入互動式圖表", "建立考前速查表"],
+              type: "review"
+            }
+          ]
+        },
+        {
+          id: "economics",
+          className: "economics",
+          icon: "經",
+          title: "經濟學",
+          tag: "Economics",
+          desc: "把供需、市場、成本與總體概念拆成可以快速理解的知識卡。",
+          weeks: [
+            {
+              id: "eco-w1",
+              week: "Week 1",
+              title: "經濟學入門",
+              meta: "稀少性、選擇、機會成本",
+              status: "待補教材",
+              tags: ["機會成本", "邊際思考", "市場"],
+              tasks: ["整理核心名詞", "加入生活化案例", "補上圖形解釋"],
+              type: "core"
+            },
+            {
+              id: "eco-w2",
+              week: "Week 2",
+              title: "供需與均衡",
+              meta: "需求、供給、均衡價格",
+              status: "待補教材",
+              tags: ["需求曲線", "供給曲線", "均衡"],
+              tasks: ["製作供需圖", "整理價格變動案例", "加入小測驗"],
+              type: "review"
+            }
+          ]
+        }
+      ];
+
+      const subjectsEl = document.querySelector("#subjects");
+      const detailEl = document.querySelector("#detail");
+      const searchInput = document.querySelector("#searchInput");
+      const tabs = Array.from(document.querySelectorAll(".tab"));
+      let activeFilter = "all";
+      let activeWeekId = "stat-w1";
+
+      function allWeeks() {
+        return courses.flatMap(course => course.weeks.map(week => ({ ...week, course })));
+      }
+
+      function getSelectedWeek() {
+        return allWeeks().find(item => item.id === activeWeekId) || allWeeks()[0];
+      }
+
+      function matchesSearch(course, week, query) {
+        if (!query) return true;
+        const text = [course.title, course.tag, week.week, week.title, week.meta, week.status, ...week.tags].join(" ").toLowerCase();
+        return text.includes(query.toLowerCase());
+      }
+
+      function matchesFilter(week) {
+        return activeFilter === "all" || week.type === activeFilter;
+      }
+
+      function renderSubjects() {
+        const query = searchInput.value.trim();
+        subjectsEl.innerHTML = courses.map(course => {
+          const visibleWeeks = course.weeks.filter(week => matchesFilter(week) && matchesSearch(course, week, query));
+          const cardHidden = visibleWeeks.length === 0 ? " hidden" : "";
+          return `
+            <article class="subject-card ${course.className}${cardHidden}">
+              <div class="subject-head">
+                <span class="subject-tag">${course.tag}</span>
+                <div class="subject-title">
+                  <h2>${course.title}</h2>
+                  <div class="icon" aria-hidden="true">${course.icon}</div>
+                </div>
+                <p class="subject-desc">${course.desc}</p>
+              </div>
+              <div class="week-list">
+                ${visibleWeeks.map(week => `
+                  <button class="week-button ${week.id === activeWeekId ? "active" : ""}" type="button" data-week-id="${week.id}">
+                    <span class="week-no">${week.week.replace("Week ", "")}</span>
+                    <span>
+                      <span class="week-name">${week.week}｜${week.title}</span>
+                      <span class="week-meta">${week.meta} · ${week.status}</span>
+                    </span>
+                    <span class="arrow">›</span>
+                  </button>
+                `).join("")}
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        document.querySelectorAll(".week-button").forEach(button => {
+          button.addEventListener("click", () => {
+            activeWeekId = button.dataset.weekId;
+            render();
+          });
+        });
+      }
+
+      function renderDetail() {
+        const selected = getSelectedWeek();
+        detailEl.innerHTML = `
+          <div class="detail-banner">
+            <h3>${selected.course.title}｜${selected.week}</h3>
+            <p>${selected.title}：${selected.meta}</p>
+          </div>
+          <div class="detail-body">
+            <div class="detail-section">
+              <h4>學習重點</h4>
+              <div class="pill-list">
+                ${selected.tags.map(tag => `<span class="pill">${tag}</span>`).join("")}
+              </div>
+            </div>
+            <div class="detail-section">
+              <h4>待整理內容</h4>
+              <ul class="todo-list">
+                ${selected.tasks.map(task => `<li>${task}</li>`).join("")}
+              </ul>
+            </div>
+            <div class="cta-row">
+              <button class="cta primary" type="button" onclick="alert('之後可接各週正式筆記頁。')">進入筆記</button>
+              <button class="cta" type="button" onclick="alert('這裡可放 PDF、圖片重點、逐字稿或小測驗。')">放置教材</button>
+            </div>
+          </div>
+        `;
+      }
+
+      function render() {
+        renderSubjects();
+        renderDetail();
+      }
+
+      searchInput.addEventListener("input", renderSubjects);
+
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(item => item.classList.remove("active"));
+          tab.classList.add("active");
+          activeFilter = tab.dataset.filter;
+          renderSubjects();
+        });
+      });
+
+      render();
+    </script>
+  </body>
+</html>
