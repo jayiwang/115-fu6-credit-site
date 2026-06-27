@@ -72,7 +72,14 @@
         font-size: 13px;
       }
 
-      .home-button {
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .home-button,
+      .schedule-button {
         min-height: 38px;
         border: 1px solid var(--line);
         border-radius: 6px;
@@ -83,7 +90,14 @@
         font-weight: 700;
       }
 
-      .home-button:hover { background: #f3f6fa; }
+      .home-button:hover,
+      .schedule-button:hover { background: #f3f6fa; }
+
+      .schedule-button {
+        border-color: #9dbce8;
+        background: var(--blue-soft);
+        color: var(--blue);
+      }
 
       .shell {
         width: min(1240px, calc(100% - 32px));
@@ -248,6 +262,198 @@
         color: var(--blue);
         font-size: 14px;
         font-weight: 900;
+      }
+
+      .schedule-view {
+        display: grid;
+        gap: 18px;
+      }
+
+      .schedule-cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .schedule-card {
+        border: 1px solid var(--line);
+        border-top: 5px solid var(--blue);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+
+      .schedule-card.statistics { border-top-color: var(--green); }
+      .schedule-card.economics { border-top-color: var(--amber); }
+
+      .schedule-card h2 {
+        margin: 0;
+        font-size: 23px;
+      }
+
+      .teacher {
+        margin: 5px 0 15px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .schedule-facts {
+        display: grid;
+        gap: 9px;
+        margin: 0;
+      }
+
+      .schedule-facts div {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr);
+        gap: 8px;
+        line-height: 1.55;
+      }
+
+      .schedule-facts dt {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .schedule-facts dd {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .calendar-panel {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        padding: 20px;
+      }
+
+      .calendar-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .calendar-head h2 {
+        margin: 0;
+        font-size: 23px;
+      }
+
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .legend i {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+        background: var(--blue);
+      }
+
+      .legend .statistics { background: var(--green); }
+      .legend .economics { background: var(--amber); }
+
+      .months {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .month {
+        min-width: 0;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        overflow: hidden;
+      }
+
+      .month h3 {
+        margin: 0;
+        background: #eef2f7;
+        padding: 12px;
+        text-align: center;
+        font-size: 18px;
+      }
+
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+      }
+
+      .weekday {
+        border-bottom: 1px solid var(--line);
+        background: #f8fafc;
+        color: var(--muted);
+        padding: 8px 4px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .day {
+        min-width: 0;
+        min-height: 94px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 6px;
+      }
+
+      .day:nth-child(7n) { border-right: 0; }
+      .day.empty { background: #fafbfc; }
+
+      .day-number {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .calendar-event {
+        display: block;
+        margin-top: 4px;
+        border-left: 3px solid var(--blue);
+        border-radius: 4px;
+        background: var(--blue-soft);
+        padding: 4px 5px;
+        color: var(--blue);
+        font-size: 11px;
+        font-weight: 800;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+      }
+
+      .calendar-event.statistics {
+        border-left-color: var(--green);
+        background: var(--green-soft);
+        color: var(--green);
+      }
+
+      .calendar-event.economics {
+        border-left-color: var(--amber);
+        background: var(--amber-soft);
+        color: var(--amber);
+      }
+
+      .privacy-note {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
       }
 
       .workspace {
@@ -555,6 +761,9 @@
 
         .subject-entry { min-height: 220px; }
 
+        .schedule-cards,
+        .months { grid-template-columns: 1fr; }
+
         .workspace { grid-template-columns: 1fr; }
 
         .chapter-panel {
@@ -591,6 +800,770 @@
         }
 
         .note-hero h2 { font-size: 25px; }
+
+        .calendar-panel { padding: 12px; }
+
+        .calendar-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .day {
+          min-height: 78px;
+          padding: 4px;
+        }
+
+        .calendar-event {
+          padding: 3px;
+          font-size: 10px;
+        }
+      }
+
+      /* Academic portal theme */
+      :root {
+        --bg: #f6f6f3;
+        --panel: #ffffff;
+        --ink: #202124;
+        --muted: #676b70;
+        --line: #d7d8d5;
+        --blue: #8b2635;
+        --blue-soft: #f7edef;
+        --green: #356859;
+        --green-soft: #edf4f1;
+        --amber: #8a641d;
+        --amber-soft: #faf4e6;
+        --red: #9a3c36;
+        --red-soft: #fbefed;
+        --shadow: none;
+      }
+
+      body { background: var(--bg); }
+
+      .topbar {
+        position: static;
+        border-top: 5px solid var(--blue);
+        border-bottom: 1px solid #c8c9c6;
+        background: #fff;
+        backdrop-filter: none;
+      }
+
+      .topbar-inner {
+        width: min(1120px, calc(100% - 32px));
+        min-height: 66px;
+      }
+
+      .brand {
+        align-items: center;
+        gap: 14px;
+      }
+
+      .brand strong {
+        font-family: Georgia, "Times New Roman", "Microsoft JhengHei", serif;
+        font-size: 22px;
+      }
+
+      .brand span {
+        border-left: 1px solid var(--line);
+        padding-left: 14px;
+      }
+
+      .home-button,
+      .schedule-button {
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        padding: 8px 4px;
+      }
+
+      .home-button:hover,
+      .schedule-button:hover {
+        background: transparent;
+        color: var(--blue);
+        text-decoration: underline;
+        text-underline-offset: 5px;
+      }
+
+      .schedule-button {
+        color: var(--ink);
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 32px));
+        padding-top: 34px;
+      }
+
+      .intro {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 0 0 28px;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 24px;
+      }
+
+      .eyebrow {
+        color: var(--blue);
+        letter-spacing: .04em;
+      }
+
+      h1 {
+        font-family: Georgia, "Times New Roman", "Microsoft JhengHei", serif;
+        font-size: 34px;
+        font-weight: 700;
+      }
+
+      .lead {
+        margin-top: 9px;
+        font-size: 15px;
+      }
+
+      .stats {
+        display: none;
+      }
+
+      .stat {
+        min-width: 86px;
+        border: 0;
+        border-left: 1px solid var(--line);
+        border-radius: 0;
+        background: transparent;
+        padding: 3px 16px;
+      }
+
+      .stat strong {
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .subject-grid {
+        display: block;
+        border-top: 1px solid var(--line);
+        background: var(--panel);
+      }
+
+      .subject-entry {
+        position: relative;
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1fr) 150px;
+        min-height: 0;
+        width: 100%;
+        align-items: center;
+        gap: 24px;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        border-radius: 0;
+        background: #fff;
+        box-shadow: none;
+        padding: 24px 20px;
+      }
+
+      .subject-entry:hover {
+        border-color: var(--line);
+        background: #faf9f7;
+        transform: none;
+      }
+
+      .subject-entry::before {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 4px;
+        background: var(--blue);
+        content: "";
+        opacity: 0;
+      }
+
+      .subject-entry:hover::before { opacity: 1; }
+      .subject-entry.statistics::before { background: var(--green); }
+      .subject-entry.economics::before { background: var(--amber); }
+
+      .subject-icon { display: none; }
+
+      .subject-entry h2 {
+        margin: 0;
+        font-size: 21px;
+      }
+
+      .subject-entry p {
+        font-size: 14px;
+      }
+
+      .subject-foot {
+        margin: 0;
+        padding: 0;
+        justify-content: flex-end;
+        color: var(--ink);
+        font-size: 13px;
+      }
+
+      .subject-foot span:first-child { display: none; }
+
+      .toolbar {
+        margin-bottom: 14px;
+      }
+
+      .search,
+      .progress-note {
+        min-height: 42px;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .progress-note {
+        border-color: var(--line);
+        background: #fff;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .workspace {
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 28px;
+      }
+
+      .chapter-panel,
+      .note,
+      .calendar-panel {
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .chapter-panel {
+        top: 18px;
+      }
+
+      .panel-head {
+        padding: 16px 14px;
+      }
+
+      .panel-head h2 {
+        font-size: 18px;
+      }
+
+      .chapter-list {
+        gap: 0;
+        padding: 0;
+      }
+
+      .chapter-button {
+        grid-template-columns: 42px minmax(0, 1fr);
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        border-radius: 0;
+        padding: 13px 12px;
+      }
+
+      .chapter-button:hover { background: #f8f7f5; }
+
+      .chapter-button.active {
+        border-color: var(--line);
+        background: var(--blue-soft);
+      }
+
+      .chapter-no,
+      .chapter-button.active .chapter-no {
+        width: auto;
+        height: auto;
+        border-radius: 0;
+        background: transparent;
+        color: var(--blue);
+      }
+
+      .note-hero {
+        border-bottom: 2px solid var(--blue);
+        background: #fff;
+        color: var(--ink);
+        padding: 28px;
+      }
+
+      .note-label { color: var(--blue); }
+
+      .note-hero h2 {
+        font-family: Georgia, "Times New Roman", "Microsoft JhengHei", serif;
+        font-size: 28px;
+      }
+
+      .note-hero p { color: var(--muted); }
+
+      .tag-list { margin-top: 16px; }
+
+      .tag {
+        border-color: var(--line);
+        border-radius: 2px;
+        color: var(--muted);
+        padding: 3px 7px;
+      }
+
+      .note-section h3 {
+        color: var(--ink);
+        font-size: 19px;
+      }
+
+      .formula,
+      .example,
+      .warning,
+      .entry,
+      .quiz,
+      .table-wrap {
+        border-radius: 0;
+      }
+
+      .formula {
+        background: #f4f3f0;
+        border-left-color: var(--blue);
+      }
+
+      .schedule-cards {
+        grid-template-columns: 1fr;
+        gap: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .schedule-card {
+        display: grid;
+        grid-template-columns: 150px 200px minmax(0, 1fr);
+        align-items: start;
+        gap: 22px;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        border-radius: 0;
+        background: #fff;
+        box-shadow: none;
+        padding: 20px;
+      }
+
+      .schedule-card h2 {
+        font-size: 20px;
+      }
+
+      .teacher { margin: 2px 0 0; }
+
+      .schedule-facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .calendar-panel {
+        padding: 20px;
+      }
+
+      .month {
+        border-radius: 0;
+      }
+
+      .month h3 {
+        background: #f1f0ed;
+        font-family: Georgia, "Times New Roman", "Microsoft JhengHei", serif;
+      }
+
+      .calendar-event {
+        border-radius: 0;
+      }
+
+      @media (max-width: 900px) {
+        .topbar-inner {
+          align-items: center;
+          flex-direction: row;
+        }
+
+        .intro {
+          grid-template-columns: 1fr;
+        }
+
+        .subject-entry {
+          grid-template-columns: 150px minmax(0, 1fr) 120px;
+        }
+
+        .schedule-card {
+          grid-template-columns: 130px 180px minmax(0, 1fr);
+        }
+      }
+
+      @media (max-width: 680px) {
+        .brand span { display: none; }
+
+        .top-actions { gap: 12px; }
+
+        .home-button,
+        .schedule-button {
+          font-size: 13px;
+        }
+
+        .intro { margin-bottom: 18px; }
+
+        .stats {
+          width: 100%;
+          border-top: 1px solid var(--line);
+          padding-top: 14px;
+        }
+
+        .stat:first-child {
+          border-left: 0;
+          padding-left: 0;
+        }
+
+        .subject-entry {
+          grid-template-columns: 1fr;
+          gap: 7px;
+          padding: 20px 16px;
+        }
+
+        .subject-foot {
+          justify-content: flex-start;
+          margin-top: 5px;
+        }
+
+        .schedule-card {
+          grid-template-columns: 1fr;
+          gap: 6px;
+          padding: 18px 14px;
+        }
+
+        .schedule-facts {
+          grid-template-columns: 1fr;
+          margin-top: 10px;
+        }
+      }
+
+      /* Clean technology theme */
+      :root {
+        --bg: #edf2f5;
+        --panel: #ffffff;
+        --ink: #17222d;
+        --muted: #607080;
+        --line: #cfd9e1;
+        --blue: #087ea4;
+        --blue-soft: #e7f5f9;
+        --green: #24745d;
+        --green-soft: #e9f5f0;
+        --amber: #9b6a10;
+        --amber-soft: #fff5df;
+        --red: #a34242;
+        --red-soft: #fff0ef;
+      }
+
+      body {
+        background: var(--bg);
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        border-top: 0;
+        border-bottom: 3px solid #28b8d8;
+        background: #101820;
+      }
+
+      .topbar-inner {
+        min-height: 62px;
+      }
+
+      .brand strong {
+        color: #fff;
+        font-family: "Microsoft JhengHei", system-ui, sans-serif;
+        font-size: 20px;
+      }
+
+      .brand span {
+        border-left-color: #43515d;
+        color: #aebbc5;
+        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+        letter-spacing: .03em;
+      }
+
+      .home-button,
+      .schedule-button {
+        border: 1px solid #53626e;
+        border-radius: 4px;
+        color: #e8f0f5;
+        padding: 7px 12px;
+      }
+
+      .home-button:hover,
+      .schedule-button:hover {
+        border-color: #28b8d8;
+        background: #17242e;
+        color: #66d4ec;
+        text-decoration: none;
+      }
+
+      .shell {
+        padding-top: 30px;
+      }
+
+      .intro {
+        border-bottom: 0;
+        margin-bottom: 18px;
+        padding-bottom: 14px;
+      }
+
+      .eyebrow {
+        color: var(--blue);
+        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+        font-size: 12px;
+        letter-spacing: .06em;
+      }
+
+      h1 {
+        color: var(--ink);
+        font-family: "Microsoft JhengHei", system-ui, sans-serif;
+        font-size: 34px;
+      }
+
+      .lead {
+        max-width: 780px;
+      }
+
+      .subject-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        border: 0;
+        background: transparent;
+      }
+
+      .subject-entry {
+        display: flex;
+        min-height: 260px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        background: #fff;
+        box-shadow: 0 8px 20px rgba(30, 52, 68, .07);
+        padding: 22px;
+      }
+
+      .subject-entry:hover {
+        border-color: #77bfd1;
+        background: #fff;
+        box-shadow: 0 12px 26px rgba(30, 52, 68, .12);
+        transform: translateY(-2px);
+      }
+
+      .subject-entry::before {
+        top: 0;
+        right: 0;
+        bottom: auto;
+        width: 100%;
+        height: 3px;
+        background: var(--blue);
+        opacity: 1;
+      }
+
+      .subject-icon {
+        display: grid;
+        width: 46px;
+        height: 46px;
+        border: 1px solid rgba(255, 255, 255, .25);
+        border-radius: 4px;
+        background: #0b789c;
+        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+        font-size: 19px;
+      }
+
+      .subject-entry.statistics .subject-icon { background: var(--green); }
+      .subject-entry.economics .subject-icon { background: var(--amber); }
+
+      .subject-entry h2 {
+        margin: 20px 0 8px;
+        font-size: 22px;
+      }
+
+      .subject-entry p {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .subject-foot {
+        margin-top: auto;
+        padding-top: 22px;
+        justify-content: space-between;
+        color: var(--blue);
+        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      }
+
+      .subject-foot span:first-child {
+        display: inline;
+        color: var(--muted);
+      }
+
+      .search,
+      .progress-note {
+        border-radius: 4px;
+      }
+
+      .search:focus-within {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px rgba(8, 126, 164, .12);
+      }
+
+      .progress-note {
+        border-color: #b7d9e3;
+        background: var(--blue-soft);
+        color: var(--blue);
+      }
+
+      .workspace {
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 18px;
+      }
+
+      .chapter-panel,
+      .note,
+      .calendar-panel {
+        border-radius: 4px;
+        background: #fff;
+        box-shadow: 0 8px 20px rgba(30, 52, 68, .06);
+      }
+
+      .chapter-panel {
+        top: 80px;
+      }
+
+      .panel-head {
+        border-top: 3px solid var(--blue);
+      }
+
+      .panel-head h2 {
+        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      }
+
+      .chapter-button {
+        border-left: 3px solid transparent;
+      }
+
+      .chapter-button.active {
+        border-left-color: var(--blue);
+        background: var(--blue-soft);
+      }
+
+      .chapter-no,
+      .chapter-button.active .chapter-no {
+        color: var(--blue);
+        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      }
+
+      .note-hero {
+        border-bottom: 3px solid #28b8d8;
+        background: #13212c;
+        color: #fff;
+      }
+
+      .note-label {
+        color: #5ed0e9;
+        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+        letter-spacing: .05em;
+      }
+
+      .note-hero h2 {
+        color: #fff;
+        font-family: "Microsoft JhengHei", system-ui, sans-serif;
+      }
+
+      .note-hero p { color: #c6d2da; }
+
+      .tag {
+        border-color: #4a5b67;
+        border-radius: 3px;
+        color: #c6d2da;
+      }
+
+      .formula,
+      .example,
+      .warning,
+      .entry,
+      .quiz,
+      .table-wrap {
+        border-radius: 3px;
+      }
+
+      .formula {
+        background: #eef5f7;
+      }
+
+      .schedule-cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        border-top: 0;
+      }
+
+      .schedule-card {
+        display: block;
+        border: 1px solid var(--line);
+        border-top: 3px solid var(--blue);
+        border-radius: 4px;
+        box-shadow: 0 6px 16px rgba(30, 52, 68, .06);
+        padding: 18px;
+      }
+
+      .schedule-card.statistics { border-top-color: var(--green); }
+      .schedule-card.economics { border-top-color: var(--amber); }
+
+      .schedule-card h2 {
+        font-size: 21px;
+      }
+
+      .teacher {
+        margin: 5px 0 15px;
+      }
+
+      .schedule-facts {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .calendar-panel {
+        padding: 18px;
+      }
+
+      .calendar-head h2 {
+        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+        font-size: 20px;
+      }
+
+      .month {
+        border-radius: 3px;
+      }
+
+      .month h3 {
+        border-bottom: 2px solid #b9dce5;
+        background: #eef5f7;
+        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      }
+
+      .calendar-event {
+        border-radius: 2px;
+      }
+
+      @media (max-width: 900px) {
+        .subject-grid,
+        .schedule-cards {
+          grid-template-columns: 1fr;
+        }
+
+        .subject-entry {
+          min-height: 210px;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .topbar-inner {
+          width: min(100% - 20px, 1120px);
+        }
+
+        .subject-entry {
+          display: flex;
+          padding: 20px;
+        }
+
+        .subject-foot {
+          justify-content: space-between;
+        }
+
+        .schedule-card {
+          display: block;
+          padding: 17px;
+        }
       }
     </style>
   </head>
@@ -601,14 +1574,17 @@
           <strong>115富六學分班</strong>
           <span>NTUST EMBA Learning Hub</span>
         </div>
-        <button id="homeButton" class="home-button hidden" type="button">回主畫面</button>
+        <div class="top-actions">
+          <button id="scheduleButton" class="schedule-button" type="button">課程行事曆</button>
+          <button id="homeButton" class="home-button hidden" type="button">回主畫面</button>
+        </div>
       </div>
     </header>
 
     <main class="shell">
       <section class="intro">
         <div>
-          <p class="eyebrow">COURSE NOTES</p>
+          <p class="eyebrow">NTUST / EMBA / LEARNING SYSTEM</p>
           <h1 id="pageTitle">115富六學分班</h1>
           <p id="pageLead" class="lead">選擇科目後，再進入各章節閱讀課堂筆記、例題與小測驗。</p>
         </div>
@@ -624,20 +1600,70 @@
           <span class="subject-icon">會</span>
           <h2>會計科</h2>
           <p>會計恆等式、借貸分錄、調整結帳、投資合併、每股盈餘與其他實務議題。</p>
-          <span class="subject-foot"><span>6 個章節</span><span>進入科目 ›</span></span>
+          <span class="subject-foot"><span>6 個章節</span><span>開啟課程 →</span></span>
         </button>
         <button class="subject-entry statistics" type="button" data-course="statistics">
           <span class="subject-icon">統</span>
           <h2>統計科</h2>
           <p>從資料整理、描述統計到機率與分配，逐週建立複習筆記。</p>
-          <span class="subject-foot"><span>2 個週次</span><span>進入科目 ›</span></span>
+          <span class="subject-foot"><span>2 個週次</span><span>開啟課程 →</span></span>
         </button>
         <button class="subject-entry economics" type="button" data-course="economics">
           <span class="subject-icon">經</span>
           <h2>經濟學</h2>
           <p>從機會成本、邊際思考到供需與市場均衡，整理生活化案例。</p>
-          <span class="subject-foot"><span>2 個週次</span><span>進入科目 ›</span></span>
+          <span class="subject-foot"><span>2 個週次</span><span>開啟課程 →</span></span>
         </button>
+      </section>
+
+      <section id="scheduleView" class="schedule-view hidden" aria-label="上課資訊與行事曆">
+        <section class="schedule-cards" aria-label="各科上課資訊">
+          <article class="schedule-card accounting">
+            <h2>會計學</h2>
+            <p class="teacher">授課教師：郭啟賢｜2 學分</p>
+            <dl class="schedule-facts">
+              <div><dt>日期</dt><dd>6/19～7/11，每週五、六</dd></div>
+              <div><dt>週五</dt><dd>18:25～21:05</dd></div>
+              <div><dt>週六</dt><dd>09:00～12:00、13:00～16:00</dd></div>
+              <div><dt>教室</dt><dd>MA-010</dd></div>
+              <div><dt>助教</dt><dd>簡紫婕</dd></div>
+            </dl>
+          </article>
+          <article class="schedule-card statistics">
+            <h2>統計學</h2>
+            <p class="teacher">授課教師：葉瑞徽｜2 學分</p>
+            <dl class="schedule-facts">
+              <div><dt>日期</dt><dd>6/22～7/29，每週一、三</dd></div>
+              <div><dt>時間</dt><dd>18:25～21:05</dd></div>
+              <div><dt>教室</dt><dd>MA-010</dd></div>
+              <div><dt>助教</dt><dd>鄭佩真</dd></div>
+            </dl>
+          </article>
+          <article class="schedule-card economics">
+            <h2>經濟學</h2>
+            <p class="teacher">授課教師：洪東敏｜2 學分</p>
+            <dl class="schedule-facts">
+              <div><dt>日期</dt><dd>6/23～7/23，每週二、四</dd></div>
+              <div><dt>時間</dt><dd>18:25～21:05</dd></div>
+              <div><dt>加課</dt><dd>7/18，09:00～12:00、13:00～16:00</dd></div>
+              <div><dt>教室</dt><dd>MA-010</dd></div>
+              <div><dt>助教</dt><dd>潘芊華</dd></div>
+            </dl>
+          </article>
+        </section>
+
+        <section class="calendar-panel">
+          <div class="calendar-head">
+            <h2>2026 暑期課程行事曆</h2>
+            <div class="legend" aria-label="科目顏色">
+              <span><i></i>會計</span>
+              <span><i class="statistics"></i>統計</span>
+              <span><i class="economics"></i>經濟</span>
+            </div>
+          </div>
+          <div id="calendarMonths" class="months"></div>
+        </section>
+        <p class="privacy-note">教室已依最新資訊統一更新為 MA-010。公開網站僅列助教姓名，電話與 Email 請參考原始課程表。</p>
       </section>
 
       <section id="courseView" class="hidden">
@@ -1091,10 +2117,47 @@
       const searchInput = document.querySelector("#searchInput");
       const homeView = document.querySelector("#homeView");
       const courseView = document.querySelector("#courseView");
+      const scheduleView = document.querySelector("#scheduleView");
       const homeButton = document.querySelector("#homeButton");
+      const scheduleButton = document.querySelector("#scheduleButton");
       const subjectEntries = Array.from(document.querySelectorAll(".subject-entry"));
+      const calendarMonths = document.querySelector("#calendarMonths");
       let activeCourse = "accounting";
       let activeItem = "acc-ch1";
+
+      const classSchedule = [
+        { date: "2026-06-19", subject: "會計", className: "accounting", time: "18:25～21:05" },
+        { date: "2026-06-20", subject: "會計", className: "accounting", time: "09～12／13～16" },
+        { date: "2026-06-26", subject: "會計", className: "accounting", time: "18:25～21:05" },
+        { date: "2026-06-27", subject: "會計", className: "accounting", time: "09～12／13～16" },
+        { date: "2026-07-03", subject: "會計", className: "accounting", time: "18:25～21:05" },
+        { date: "2026-07-04", subject: "會計", className: "accounting", time: "09～12／13～16" },
+        { date: "2026-07-10", subject: "會計", className: "accounting", time: "18:25～21:05" },
+        { date: "2026-07-11", subject: "會計", className: "accounting", time: "09～12／13～16" },
+        { date: "2026-06-22", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-06-24", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-06-29", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-07-01", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-07-06", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-07-08", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-07-13", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-07-15", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-07-20", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-07-22", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-07-27", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-07-29", subject: "統計", className: "statistics", time: "18:25～21:05" },
+        { date: "2026-06-23", subject: "經濟", className: "economics", time: "18:25～21:05" },
+        { date: "2026-06-25", subject: "經濟", className: "economics", time: "18:25～21:05" },
+        { date: "2026-06-30", subject: "經濟", className: "economics", time: "18:25～21:05" },
+        { date: "2026-07-02", subject: "經濟", className: "economics", time: "18:25～21:05" },
+        { date: "2026-07-07", subject: "經濟", className: "economics", time: "18:25～21:05" },
+        { date: "2026-07-09", subject: "經濟", className: "economics", time: "18:25～21:05" },
+        { date: "2026-07-14", subject: "經濟", className: "economics", time: "18:25～21:05" },
+        { date: "2026-07-16", subject: "經濟", className: "economics", time: "18:25～21:05" },
+        { date: "2026-07-18", subject: "經濟", className: "economics", time: "09～12／13～16" },
+        { date: "2026-07-21", subject: "經濟", className: "economics", time: "18:25～21:05" },
+        { date: "2026-07-23", subject: "經濟", className: "economics", time: "18:25～21:05" }
+      ];
 
       function currentCourse() {
         return courses[activeCourse];
@@ -1169,6 +2232,46 @@
         renderNote();
       }
 
+      function renderCalendarMonth(year, month) {
+        const monthNumber = String(month + 1).padStart(2, "0");
+        const firstDay = new Date(year, month, 1);
+        const lastDate = new Date(year, month + 1, 0).getDate();
+        const leadingDays = (firstDay.getDay() + 6) % 7;
+        const weekdays = ["一", "二", "三", "四", "五", "六", "日"];
+        const cells = [];
+
+        for (let index = 0; index < leadingDays; index += 1) {
+          cells.push('<div class="day empty"></div>');
+        }
+
+        for (let day = 1; day <= lastDate; day += 1) {
+          const date = `${year}-${monthNumber}-${String(day).padStart(2, "0")}`;
+          const events = classSchedule
+            .filter(event => event.date === date)
+            .map(event => `<span class="calendar-event ${event.className}">${event.subject}<br>${event.time}</span>`)
+            .join("");
+          cells.push(`<div class="day"><span class="day-number">${day}</span>${events}</div>`);
+        }
+
+        while (cells.length % 7 !== 0) {
+          cells.push('<div class="day empty"></div>');
+        }
+
+        return `
+          <section class="month">
+            <h3>${year} 年 ${month + 1} 月</h3>
+            <div class="calendar-grid">
+              ${weekdays.map(day => `<div class="weekday">${day}</div>`).join("")}
+              ${cells.join("")}
+            </div>
+          </section>
+        `;
+      }
+
+      function renderCalendar() {
+        calendarMonths.innerHTML = renderCalendarMonth(2026, 5) + renderCalendarMonth(2026, 6);
+      }
+
       searchInput.addEventListener("input", renderList);
 
       function openCourse(courseId) {
@@ -1176,15 +2279,19 @@
           activeItem = currentCourse().items[0].id;
           searchInput.value = "";
           homeView.classList.add("hidden");
+          scheduleView.classList.add("hidden");
           courseView.classList.remove("hidden");
           homeButton.classList.remove("hidden");
+          scheduleButton.classList.remove("hidden");
           render();
       }
 
       function showHome() {
         homeView.classList.remove("hidden");
+        scheduleView.classList.add("hidden");
         courseView.classList.add("hidden");
         homeButton.classList.add("hidden");
+        scheduleButton.classList.remove("hidden");
         document.querySelector("#pageTitle").textContent = "115富六學分班";
         document.querySelector("#pageLead").textContent = "選擇科目後，再進入各章節閱讀課堂筆記、例題與小測驗。";
         document.querySelector("#chapterCount").textContent = "3";
@@ -1196,11 +2303,30 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
+      function showSchedule() {
+        homeView.classList.add("hidden");
+        courseView.classList.add("hidden");
+        scheduleView.classList.remove("hidden");
+        homeButton.classList.remove("hidden");
+        scheduleButton.classList.add("hidden");
+        document.querySelector("#pageTitle").textContent = "上課資訊與行事曆";
+        document.querySelector("#pageLead").textContent = "三科授課教師、上課時段與完整日期集中在同一畫面；教室均為 MA-010。";
+        document.querySelector("#chapterCount").textContent = "3";
+        document.querySelector("#countLabel").textContent = "科目";
+        document.querySelector("#middleCount").textContent = "31";
+        document.querySelector("#middleLabel").textContent = "堂課";
+        document.querySelector("#quizCount").textContent = "MA-010";
+        document.querySelector("#quizLabel").textContent = "教室";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
       subjectEntries.forEach(entry => {
         entry.addEventListener("click", () => openCourse(entry.dataset.course));
       });
 
       homeButton.addEventListener("click", showHome);
+      scheduleButton.addEventListener("click", showSchedule);
+      renderCalendar();
       showHome();
     </script>
   </body>
